@@ -305,18 +305,3 @@ w - write, a - append, r – read, b – binary.
 w+ - write and read, a+ - append and read
 
 with open(‘files/data.txt’, ‘’)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

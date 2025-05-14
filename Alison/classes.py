@@ -1,4 +1,6 @@
 class Employee:
+
+    company = 'Guinya Studio'
     
     # Constructor
     # def Employee():
@@ -6,11 +8,11 @@ class Employee:
         self.name = name
         self.age = age
         self.salary = salary
-        self.email = self.generateEmail()
+        self.email = self.generateEmail(Employee)
         self.job = self.Job(dept, title)
 
-    def generateEmail(self):
-        return(f'{self.name}@company.com')
+    def generateEmail(self, cls):
+        return(f'{self.name}@{cls.company}.com')
 
     # def __init__(self):
     #     self.name = 'Default'
@@ -24,6 +26,10 @@ class Employee:
     
     def showInfo(self):
         print(self.name, self.age, self.salary, self.job, self.email)
+
+    @classmethod
+    def changeCompanyName(cls, newName):
+        cls.company = newName
 
     def __str__(self):
         return (f'Name: {self.name}, Age: {self.age}, Salary: {self.salary}, '
@@ -42,6 +48,7 @@ class Employee:
             print(f"Department: {self.dept}, Title: {self.title}")
 
 obj = Employee('Jane', '34', '45000', 'OS', 'Engineer')
+Employee.changeCompanyName('Guinya Code')
 # obj.showEmployeeData() also works
 # Employee.showEmployeeData(obj)
 
