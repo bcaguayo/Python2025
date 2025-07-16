@@ -1,4 +1,4 @@
-# Run: Python3 sar.py
+# Run: Python3 parts.py
 
 # Import math library
 import math
@@ -6,13 +6,13 @@ import openpyxl # type: ignore
 from openpyxl import load_workbook # type: ignore
 
 # init values
-NUM_COLUMNS = 10
-NUM_ROWS = 387 # (include header)
-NUM_PARTITIONS = 7
+NUM_COLUMNS = 9
+NUM_ROWS = 192 # (include header)
+NUM_PARTITIONS = 8
 
 # Input -> filename and sheet name
-FILENAME = 'Stellantis-Toyota-2025-04-28.xlsx'
-SHEETNAME = 'SAR_Default'
+FILENAME = 'lost.xlsx'
+SHEETNAME = 'Sheet1'
 
 # Calculate number of rows per partition
 parts = math.ceil(NUM_ROWS / NUM_PARTITIONS)
@@ -40,22 +40,23 @@ while cell != None:
 num_columns -= 1
 
 # Loopity Loop
-i = 1       # index on local partition
+i = 0       # index on local partition
 i_part = 0  # index on array of sheets
 ws_active = ws_parts[0]
 
-# Split data into 7 partitions
+# Split data into n partitions
 for row in range (2, NUM_ROWS + 1):
     if i > parts:
-        i = 1
+        i = 0
         i_part += 1
         ws_active = ws_parts[i_part]
         for column in range (1, num_columns + 1):
-            ws_active.cell(row=i, column=column).value = header[column - 1]
+            ws_active.cell(row=i+1, column=column).value = header[column - 1]
     else:
         for column in range (1, num_columns + 1):
-            ws_active.cell(row=i, column=column).value = ws.cell(row=row, column=column).value
+            ws_active.cell(row=i+1, column=column).value = ws.cell(row=row, column=column).value
     i += 1
     
 # Womp womp
 wb.save(FILENAME)
+wb.close

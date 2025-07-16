@@ -305,3 +305,23 @@ w - write, a - append, r – read, b – binary.
 w+ - write and read, a+ - append and read
 
 with open(‘files/data.txt’, ‘’)
+
+## Classes
+class Employee:
+    (class var, static)
+    company = ‘ccl’
+    @classmethod
+    def changeCompanyName(self, cls, newName):
+        cls.company = newName
+    (instance var)
+    def generateEmail(self, cls):
+        return f’{self.name}@{cls.company}.com’
+    @staticmethod
+    def info():
+        print('This is a class for creating employee objects and it requires parameters which are', 
+              'name, age, salary')
+
+Employee.changeCompanyName('newCompany')
+
+## Change Data Types
+new_var = new_type(old_var)

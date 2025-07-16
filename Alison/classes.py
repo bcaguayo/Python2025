@@ -31,6 +31,12 @@ class Employee:
     def changeCompanyName(cls, newName):
         cls.company = newName
 
+    @staticmethod
+    def info():
+        print("This is a class for creating Employees. ",
+              "It includes methods for displaying employee data and changing company name. "
+              "It requires name, age, salary and position.")
+
     def __str__(self):
         return (f'Name: {self.name}, Age: {self.age}, Salary: {self.salary}, '
                 f'Position: {self.job}, Email: {self.email}.')
