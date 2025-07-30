@@ -1,6 +1,9 @@
 # Ignore Excel files
 *.xlsx
 
+# Ignore txt file in Lines
+Lines/*.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

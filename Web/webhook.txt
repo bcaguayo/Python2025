@@ -1,0 +1,8 @@
+pat-eu1-c8242757-5a04-4df6-9acc-317da1018a7f
+
+https://www.merge.dev/blog/how-to-get-contacts-from-the-hubspot-crm-api-in-python
+
+https://developers.hubspot.com/docs/reference/api/crm/objects/deals
+https://pypi.org/project/hubspot-api-client/
+
+https://github.com/HubSpot/sample-workflow-custom-code/blob/main/samples/archive-contact.js
