@@ -7,7 +7,7 @@ import openpyxl # type: ignore
 from openpyxl import load_workbook # type: ignore
 
 # Input -> filename and sheet name
-FILENAME = 'lost - Dupes.xlsx'
+FILENAME = 'lost.xlsx'
 SHEETNAME = 'clear'
 
 # Open Workbook
@@ -35,9 +35,6 @@ while True :
         count += 1
     else :
         seen.add(record)
-
-    # RAISE EOF LIMIT
-    ROW_LIMIT += 1
 
 print(f'deleted: {count}')
 

@@ -1,3 +1,6 @@
+## global install
+## python3 -m pip install package
+
 Python 3
 Contents
 ## Compiler	2

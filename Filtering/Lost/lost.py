@@ -36,7 +36,7 @@ while True :
     # RAISE EOF LIMIT
     ROW_LIMIT += 1
 
-indexes = []
+# Make not Lost blank
 for row in range(2, ROW_LIMIT):
     if ws.cell(row=row,column=CONTACT_COL).value in notlost:
         # lost = ws.cell(row=row,column=LOST_COL).value
