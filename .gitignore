@@ -5,7 +5,7 @@
 Lines/*.txt
 
 # Ignore txt file in Duplicates
-Duplicates/*.txt
+Duplicates/lender_dupes/*.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
