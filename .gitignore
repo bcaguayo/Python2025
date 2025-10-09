@@ -4,6 +4,9 @@
 # Ignore txt file in Lines
 Lines/*.txt
 
+# Ignore txt file in Duplicates
+Duplicates/*.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
