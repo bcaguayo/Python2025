@@ -7,6 +7,9 @@ Lines/*.txt
 # Ignore txt file in Duplicates
 Duplicates/lender_dupes/*.txt
 
+# Ignore txt file in Manual
+Web/manual/*.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
