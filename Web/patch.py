@@ -1,6 +1,11 @@
 import requests     #type: ignore
 import json
 
+AUTH = ""
+# Get auth from /Secret/auth.py
+with open('/Secret/auth.py') as f:
+    AUTH = f.read().strip()
+
 contacts = {"321820069051", "321820069050", "321820068089", 
             "321820068088", "321820068087", "321820068086"}
 
@@ -12,7 +17,7 @@ payload = { "properties": {
     } }
 
 headers = {
-    "Authorization": "Bearer pat-eu1-c8242757-5a04-4df6-9acc-317da1018a7f",
+    "Authorization": f"Bearer {AUTH}",
     "Content-Type": "application/json"
 }
 

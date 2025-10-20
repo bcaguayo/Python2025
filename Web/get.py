@@ -1,12 +1,17 @@
 import requests
 import json
 
+AUTH = ""
+# Get auth from /Secret/auth.py
+with open('/Secret/auth.py') as f:
+    AUTH = f.read().strip()
+
+headers = {"Authorization" : f"Bearer {AUTH}"}
+
 # Set the API endpoints and headers
 url = "https://api.hubapi.com/crm/v3/objects/deals/321820069050"
 
 querystring = {"properties":"original_deal"}
-
-headers = {"Authorization" : "Bearer pat-eu1-c8242757-5a04-4df6-9acc-317da1018a7f"}
 
 # Make a GET request to the API
 response = requests.get(url, headers=headers, params=querystring)

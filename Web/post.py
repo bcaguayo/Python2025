@@ -1,12 +1,17 @@
 import requests
 
+AUTH = ""
+# Get auth from /Secret/auth.py
+with open('/Secret/auth.py') as f:
+    AUTH = f.read().strip()
+
 # Set the API endpoint
 url = "https://api.hubapi.com/crm/v3/objects/contacts"
 
 # Set the request headers
 headers = {
    "Content-Type": "application/json",
-   "Authorization": "Bearer pat-eu1-c8242757-5a04-4df6-9acc-317da1018a7f"
+   "Authorization": f"Bearer {AUTH}"
 }
 
 # Set the contact information

@@ -1,6 +1,5 @@
 # Everything in /Web
-/Web
-
+Web/Secret/*
 
 # Ignore Excel files
 *.xlsx
