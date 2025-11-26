@@ -1,6 +1,6 @@
 # Duplicated Finance agreement numbers
 # Divide list A into B and C
-# Non-Deterministic
+# Deterministic
 
 from openpyxl import load_workbook
 from datetime import datetime

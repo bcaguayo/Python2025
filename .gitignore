@@ -1,6 +1,3 @@
-# Everything in /Web
-Web/Secret/*
-
 # Ignore Excel files
 *.xlsx
 
@@ -11,7 +8,10 @@ Lines/*.txt
 Duplicates/lender_dupes/*.txt
 
 # Ignore txt file in Manual
-Web/manual/*.txt
+Web/manual/*
+Web/Secret/*
+Web/Clients/*
+Web/output/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

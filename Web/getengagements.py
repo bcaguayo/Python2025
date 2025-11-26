@@ -1,9 +1,18 @@
 import requests
 import json
 
+contact = 443877167298
+
+# Bearer token
+AUTH = ""
+
+# Get auth from /Secret/auth.py
+with open('Secret/auth.txt') as f:
+    AUTH = f.read().strip()
+
 # Set the API endpoints and headers
-endpoint = "https://api.hubapi.com/engagements/v1/engagements/associated/contact/438814246133/paged"
-headers = {"Authorization" : "Bearer pat-eu1-c8242757-5a04-4df6-9acc-317da1018a7f"}
+endpoint = f'https://api.hubapi.com/engagements/v1/engagements/associated/contact/{contact}/paged'
+headers = {"Authorization" : f"Bearer {AUTH}"}
 
 # Make a GET request to the API
 response = requests.get(endpoint, headers=headers)
@@ -11,7 +20,7 @@ response = requests.get(endpoint, headers=headers)
 # Parse the JSON data from the response
 data = response.json()
 
-print(data)
+print(json.dumps(data, indent=2))
 
 # Loop through the contacts and print their information
 # for contact in data["contacts"]:

@@ -1,8 +1,11 @@
 import requests
-import json
 
 # Your HubSpot API key
-access_token = 'pat-eu1-c8242757-5a04-4df6-9acc-317da1018a7f'
+AUTH = ""
+
+# Get auth from /Secret/auth.py
+with open('Secret/auth.txt') as f:
+    AUTH = f.read().strip()
 
 # HubSpot API URL for creating properties
 url = "https://api.hubapi.com/crm/v3/properties/contacts/batch/create"
@@ -10,258 +13,89 @@ url = "https://api.hubapi.com/crm/v3/properties/contacts/batch/create"
 # Headers
 headers = {
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {access_token}"
+    "Authorization": f"Bearer {AUTH}"
 }
 
-group_name = "aml_automated"
+group_name = "Call Centre Function"
 
 # Define the properties you want to create
 payload = {
     "inputs": [
-        # {
-        #     "name": "ln_idu_decision",
-        #     "label": "LexusNexus IDU Decision",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #         {"label": "Pass", "value": "pass"},
-        #         {"label": "Refer", "value": "refer"},
-        #         {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_idu_scorecard",
-        #     "label": "LexusNexus IDU Scorecard",
-        #     "groupName": f"{group_name}",
-        #     "type": "string",
-        #     "fieldType": "text"
-        # },
-        # {
-        #     "name": "ln_idu_score",
-        #     "label": "LexusNexus IDU Score",
-        #     "groupName": f"{group_name}",
-        #     "type": "number",
-        #     "fieldType": "number"
-        # },
-        # {
-        #     "name": "ln_idu_checked_at",
-        #     "label": "LexusNexus IDU Timestamp",
-        #     "groupName": f"{group_name}",
-        #     "type": "datetime",
-        #     "fieldType": "date"
-        # },
-        # {
-        #     "name": "ln_idu_transaction_id",
-        #     "label": "LexusNexus IDU Transaction ID",
-        #     "groupName": f"{group_name}",
-        #     "type": "string",
-        #     "fieldType": "text"
-        # },
-        # {
-        #     "name": "ln_check_electoral_roll",
-        #     "label": "LexusNexus Check Electoral Roll",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #         {"label": "No Match", "value": "no_match"},
-        #         {"label": "Match", "value": "match"},
-        #         {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_tracesmart",
-        #     "label": "LexusNexus Check Tracesmart",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #         {"label": "No Match", "value": "no_match"},
-        #         {"label": "Match", "value": "match"},
-        #         {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_telephone_directory",
-        #     "label": "LexusNexus Check Telephone Directory",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #         {"label": "No Match", "value": "no_match"},
-        #         {"label": "Match", "value": "match"},
-        #         {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_credit_active",
-        #     "label": "LexusNexus Check Credit Active",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_dob_verification",
-        #     "label": "LexusNexus Check DOB Verification",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_age_verification",
-        #     "label": "LexusNexus Check Age Verification",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_pep_sanction",
-        #     "label": "LexusNexus Check PEP Sanction",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_mortality",
-        #     "label": "LexusNexus Check Mortality",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_gone_away",
-        #     "label": "LexusNexus Check Gone Away",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_ccj",
-        #     "label": "LexusNexus Check CCJ",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_insolvency",
-        #     "label": "LexusNexus Check Insolvency",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # },
-        # {
-        #     "name": "ln_check_company_director",
-        #     "label": "LexusNexus Check Company Director",
-        #     "groupName": f"{group_name}",
-        #     "type": "enumeration",
-        #     "fieldType": "select",
-        #     "options": [
-        #     {"label": "No Match", "value": "no_match"},
-        #     {"label": "Match", "value": "match"},
-        #     {"label": "Fail", "value": "fail"}
-        #     ]
-        # }  
         {
-            "name": "ln_detail_insolvency",
-            "label": "LexusNexus IDU Insolvency Details",
+            "name": "calls_agent",
+            "label": "Calls - Agent",
             "groupName": f"{group_name}",
-            "type": "string",
-            "fieldType": "text"
+            "type": "enumeration",
+            "fieldType": "hubspot_user"
         },
         {
-            "name": "ln_detail_pep_sanction",
-            "label": "LexusNexus IDU PEP Sanction Details",
+            "name": "calls_time_and_date_stamp",
+            "label": "Calls - Time & Date Stamp",
             "groupName": f"{group_name}",
-            "type": "string",
-            "fieldType": "text"
+            "type": "bool",
+            "fieldType": "booleancheckbox"
         },
         {
-            "name": "ln_detail_mortality",
-            "label": "LexusNexus IDU Mortality Details",
+            "name": "calls_successful_sign_up",
+            "label": "Calls - Successful Sign-up",
             "groupName": f"{group_name}",
-            "type": "string",
-            "fieldType": "text"
+            "type": "bool",
+            "fieldType": "booleancheckbox"
         },
         {
-            "name": "ln_detail_ccj",
-            "label": "LexusNexus IDU CCJ Details",
+            "name": "calls_call_back",
+            "label": "Calls - Call Back",
             "groupName": f"{group_name}",
-            "type": "string",
-            "fieldType": "text"
+            "type": "bool",
+            "fieldType": "booleancheckbox"
         },
         {
-            "name": "ln_idu_raw_json",
-            "label": "LexusNexus IDU JSON Response",
+            "name": "declined",
+            "label": "Calls - Declined",
             "groupName": f"{group_name}",
-            "type": "string",
-            "fieldType": "textarea"
+            "type": "bool",
+            "fieldType": "booleancheckbox"
+        },
+        {
+            "name": "calls_completed_journey",
+            "label": "Calls - Completed Journey",
+            "groupName": f"{group_name}",
+            "type": "bool",
+            "fieldType": "booleancheckbox"
+        },
+        {
+            "name": "calls_client_retained",
+            "label": "Calls - Client Retained",
+            "groupName": f"{group_name}",
+            "type": "bool",
+            "fieldType": "booleancheckbox"
+        },
+        {
+            "name": "calls_interaction_type",
+            "label": "Calls - Interaction Type",
+            "groupName": f"{group_name}",
+            "type": "enumeration",
+            "fieldType": "select",
+            "options": [
+                {"label": "Email", "value": "email"},
+                {"label": "SMS", "value": "sms"},
+                {"label": "Call", "value": "call"}
+            ]
+        },
+        {
+            "name": "calls_reason_for_interaction",
+            "label": "Calls - Reason for Interaction",
+            "groupName": f"{group_name}",
+            "type": "enumeration",
+            "fieldType": "select",
+            "options": [
+                {"label": "ID", "value": "id"},
+                {"label": "Sale", "value": "sale"},
+                {"label": "Query", "value": "query"}
+            ]
         }
     ]
 }
-
-# Example Property model (HubSpot):
-# •	ln_idu_decision — Dropdown: Pass, Refer, Fail
-# •	ln_idu_scorecard — Single-line text
-# •	ln_idu_score — Number (or text if needed)
-# •	ln_idu_checked_at — Datetime
-# •	ln_idu_transaction_id — Single-line text
-# •	Per-check fields (each a Dropdown with options No Match, Match, Fail):
-#     o	ln_check_electoral_roll
-#     o	ln_check_tracesmart
-#     o	ln_check_telephone_directory
-#     o	ln_check_credit_active
-#     o	ln_check_dob_verification
-#     o	ln_check_age_verification
-#     o	ln_check_pep_sanction
-#     o	ln_check_mortality
-#     o	ln_check_gone_away
-#     o	ln_check_ccj
-#     o	ln_check_insolvency
-#     o	ln_check_company_director
-# (if possible) text fields for detail strings:
-# o	ln_detail_insolvency, ln_detail_pep_sanction, ln_detail_mortality, ln_detail_ccj, etc.
-# (if possible) ln_idu_raw_json — Long text
 
 # Send the POST request to the HubSpot API
 response = requests.post(url, headers=headers, json=payload)
@@ -271,3 +105,137 @@ if response.status_code == 202 or response.status_code == 201 or response.status
     print("Property created successfully")
 else:
     print(f"Error: {response.status_code} - {response.text}")
+    
+# Examples:
+# "inputs": [
+#         # Single line text
+#         {
+#             "name": "example_single_line_text",
+#             "label": "Example Single Line Text",
+#             "groupName": f"{group_name}",
+#             "type": "string",
+#             "fieldType": "text"
+#         },
+
+#         # Multi line text
+#         {
+#             "name": "example_multi_line_text",
+#             "label": "Example Multi Line Text",
+#             "groupName": f"{group_name}",
+#             "type": "string",
+#             "fieldType": "textarea"
+#         },
+
+#         # Number field
+#         {
+#             "name": "example_number",
+#             "label": "Example Number",
+#             "groupName": f"{group_name}",
+#             "type": "number",
+#             "fieldType": "number"
+#         },
+
+#         # Dropdown (Select)
+#         {
+#             "name": "example_dropdown",
+#             "label": "Example Dropdown",
+#             "groupName": f"{group_name}",
+#             "type": "enumeration",
+#             "fieldType": "select",
+#             "options": [
+#                 {"label": "Option 1", "value": "option1"},
+#                 {"label": "Option 2", "value": "option2"}
+#             ]
+#         },
+
+#         # Radio Select
+#         {
+#             "name": "example_radio",
+#             "label": "Example Radio Select",
+#             "groupName": f"{group_name}",
+#             "type": "enumeration",
+#             "fieldType": "radio",
+#             "options": [
+#                 {"label": "Choice A", "value": "a"},
+#                 {"label": "Choice B", "value": "b"}
+#             ]
+#         },
+
+#         # Checkbox (multiple select)
+#         {
+#             "name": "example_checkbox_group",
+#             "label": "Example Checkbox Group",
+#             "groupName": f"{group_name}",
+#             "type": "enumeration",
+#             "fieldType": "checkbox",
+#             "options": [
+#                 {"label": "Red", "value": "red"},
+#                 {"label": "Blue", "value": "blue"},
+#                 {"label": "Green", "value": "green"}
+#             ]
+#         },
+
+#         # Boolean checkbox
+#         {
+#             "name": "example_boolean",
+#             "label": "Example Boolean",
+#             "groupName": f"{group_name}",
+#             "type": "bool",
+#             "fieldType": "booleancheckbox"
+#         },
+
+#         # Date picker
+#         {
+#             "name": "example_date",
+#             "label": "Example Date",
+#             "groupName": f"{group_name}",
+#             "type": "date",
+#             "fieldType": "date"
+#         },
+
+#         # Date & Time picker
+#         {
+#             "name": "example_datetime",
+#             "label": "Example Date/Time",
+#             "groupName": f"{group_name}",
+#             "type": "datetime",
+#             "fieldType": "datetime"
+#         },
+
+#         # HubSpot user field
+#         {
+#             "name": "example_hs_user",
+#             "label": "Example HubSpot User",
+#             "groupName": f"{group_name}",
+#             "type": "enumeration",
+#             "fieldType": "hubspot_user"
+#         },
+
+#         # Calculation property
+#         {
+#             "name": "example_calculation",
+#             "label": "Example Calculation",
+#             "groupName": f"{group_name}",
+#             "type": "number",
+#             "fieldType": "calculation_equation",
+#             "calculationFormula": "example_number * 2"
+#         },
+
+#         # URL field
+#         {
+#             "name": "example_url",
+#             "label": "Example URL",
+#             "groupName": f"{group_name}",
+#             "type": "string",
+#             "fieldType": "url"
+#         },
+
+#         # Phone field
+#         {
+#             "name": "example_phone",
+#             "label": "Example Phone Number",
+#             "groupName": f"{group_name}",
+#             "type": "string",
+#             "fieldType": "phone"
+#         }
+#     ]
